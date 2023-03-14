@@ -74,7 +74,7 @@ class App
         puts('Book has been rented successfully')
     end
 
-    def list_rentall_per_person_id(id)
+    def list_rental_per_person_id(id)
         person = @people.select { |psn| psn.id == id }
         return 'No person found' unless person.length.positive?
 
