@@ -1,4 +1,4 @@
-require './lib/app'
+require './library/app'
 def main_menu
   puts "\n-----------------------------------\nPick an option by entering a number:"
   print("

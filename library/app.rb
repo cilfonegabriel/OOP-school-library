@@ -13,13 +13,13 @@ class App
   end
 
   def list_books
-    puts ' There are not any books. add one to the library' unless @books.length.positive?
-    @books.each { |_book| puts(" | Title: #{book.title} Author: #{book.author} |") }
+    puts ' No books found. Add one to the library' unless @books.length.positive?
+    @books.each { |book| puts(" | Title: #{book.title} Author: #{book.author} |") }
   end
 
   def list_people
-    puts ' There is not any person. add one to the library' unless @people.length.positive?
-    @people.each { |_person| puts(" [#{person.class}] ID: #{person.id} Name: #{person.name} Age: #{person.age}") }
+    puts ' No people found. Add someone to the library' unless @people.length.positive?
+    @people.each { |person| puts(" [#{person.class}] ID: #{person.id} Name: #{person.name} Age: #{person.age}") }
   end
 
   def create_student
@@ -42,7 +42,7 @@ class App
     age = gets.chomp
     print('Specialization: ')
     spec = gets.chomp
-    new_teacher = Teacher.new(age, name, spec)
+    new_teacher = Teacher.new(age, spec, name)
     @people.push(new_teacher)
     puts 'Teacher created successfully'
   end
