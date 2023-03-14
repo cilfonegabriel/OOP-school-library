@@ -1,4 +1,5 @@
 require_relative 'person'
+
 class Student < Person
   attr_accessor :classroom
 
@@ -11,8 +12,8 @@ class Student < Person
     '¯\(ツ)/¯'
   end
 
-  def add_student(classroom)
+  def add_classroom(classroom)
     @classroom = classroom
-    classroom.add_student(self) unless classroom.student.include?(self)
+    classroom.add_student(self) unless classroom.students.include?(self)
   end
 end

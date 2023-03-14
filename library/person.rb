@@ -1,4 +1,5 @@
 require_relative 'nameable'
+
 class Person < Nameable
   attr_accessor :name, :age
   attr_reader :id, :parent_permission, :rentals
@@ -22,9 +23,9 @@ class Person < Nameable
   end
 
   def add_rental(rental)
-    @rental.push(rental)
+    @rentals.push(rental)
     rental.person = self
-    rental.book.rentals,push(rental) unless rental.book.include?(rental)
+    rental.book.rentals.push(rental) unless rental.book.rentals.include?(rental)
   end
 
   private
