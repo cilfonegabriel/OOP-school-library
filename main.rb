@@ -1,4 +1,4 @@
-require './library/app'
+require_relative './library/app'
 def main_menu
   puts "\n-----------------------------------\nPick an option by entering a number:"
   print("
@@ -61,3 +61,5 @@ def main
   end
   puts 'Thank you for using this app'
 end
+
+main
