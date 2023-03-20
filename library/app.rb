@@ -6,10 +6,12 @@ require_relative './rental'
 require_relative './classroom'
 require_relative './modules/1_list_books'
 require_relative './modules/2_list_people'
+require_relative './modules/3_add_book'
 
 class App
   include ListBooks
   include ListPeople
+  include AddBook
 
   def initialize
     @books = []
@@ -40,16 +42,6 @@ class App
     new_teacher = Teacher.new(age, spec, name)
     @people.push(new_teacher)
     puts 'Teacher created successfully'
-  end
-
-  def create_book
-    print('Title: ')
-    title = gets.chomp
-    print('Author: ')
-    auth = gets.chomp
-    new_book = Book.new(title, auth)
-    @books.push(new_book)
-    puts 'Book created successfully'
   end
 
   def create_rental
