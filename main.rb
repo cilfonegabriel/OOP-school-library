@@ -1,4 +1,5 @@
 require_relative './library/app'
+
 def main_menu
   puts "\n-----------------------------------\nPick an option by entering a number:"
   print("
@@ -12,6 +13,12 @@ def main_menu
   ")
 end
 
+def list_rentals_per_person_id(app)
+  puts('Insert ID or -1 to return')
+  id = gets.chomp.to_i
+  return app.list_rentals_per_person_id(id) if id.positive?
+end
+
 def add_person(app)
   puts "Add a:\n1) Student\n2) Teacher"
   option = gets.chomp.to_i
@@ -23,12 +30,6 @@ def add_person(app)
   else
     puts 'Invalid option'
   end
-end
-
-def list_rentals_per_person_id(app)
-  puts('Insert ID or -1 to return')
-  id = gets.chomp.to_i
-  return app.list_rentals_per_person_id(id) if id.positive?
 end
 
 def run_menu(app, option)
