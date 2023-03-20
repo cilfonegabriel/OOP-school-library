@@ -4,24 +4,17 @@ require_relative './teacher'
 require_relative './book'
 require_relative './rental'
 require_relative './classroom'
+require_relative './modules/1_list_books'
+require_relative './modules/2_list_people'
 
 class App
+  include ListBooks
+  include ListPeople
+
   def initialize
     @books = []
     @rentals = []
     @people = []
-  end
-
-  def list_books
-    puts '  No books found. Add one to the library' unless @books.length.positive?
-
-    @books.each { |book| puts(" | Title: #{book.title} Author: #{book.author} |") }
-  end
-
-  def list_people
-    puts '  No people found. Add someone to the library' unless @people.length.positive?
-
-    @people.each { |person| puts("  [#{person.class}] ID: #{person.id} Name: #{person.name} Age: #{person.age}") }
   end
 
   def create_student
