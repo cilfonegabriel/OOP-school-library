@@ -18,6 +18,7 @@ class App
   include Menu
 
   def initialize
+    puts 'Welcome to School Library App!'
     @books = []
     @people = []
     @rentals = []
@@ -28,7 +29,6 @@ class App
       menu
       option = gets.chomp.to_i
       action = ACTIONS[option]
-
       if action == :break
         puts 'Thank you for using this app!'
         break
@@ -60,7 +60,6 @@ class App
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
     option = gets.chomp.to_i
     case option
-
     when 1
       print 'Age: '
       age = gets.chomp.to_i
@@ -72,7 +71,6 @@ class App
       student = Student.new(age, name, permission)
       puts 'Person created successfully'
       @people.push(student)
-
     when 2
       print 'Age: '
       age = gets.chomp.to_i
