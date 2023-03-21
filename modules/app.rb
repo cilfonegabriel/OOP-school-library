@@ -1,7 +1,7 @@
-require_relative  './book'
-require_relative  './student'
-require_relative  './teacher'
-require_relative  './menu'
+require_relative './book'
+require_relative './student'
+require_relative './teacher'
+require_relative './menu'
 
 ACTIONS = {
   1 => :list_books,
@@ -60,6 +60,7 @@ class App
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
     option = gets.chomp.to_i
     case option
+
     when 1
       print 'Age: '
       age = gets.chomp.to_i
@@ -71,6 +72,7 @@ class App
       student = Student.new(age, name, permission)
       puts 'Person created successfully'
       @people.push(student)
+
     when 2
       print 'Age: '
       age = gets.chomp.to_i
