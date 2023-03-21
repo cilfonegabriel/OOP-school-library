@@ -20,9 +20,12 @@ class App
   include Menu
   def initialize
     puts 'Welcome to School Library App!'
-    @books = load_books
-    @people = load_people
-    @rentals = load_rentals
+    @books = []
+    @people = []
+    @rentals = []
+    load_books
+    load_people
+    load_rentals
   end
 
   def run
@@ -71,7 +74,7 @@ class App
       print 'Has parent permission? [Y/N]: '
       permission = gets.chomp.to_s
       permission = permission.downcase == 'y'
-      student = Student.new(age, name, permission)
+      student = Student.new(age, name, parent_permission: permission)
       puts 'Person created successfully'
       @people.push(student)
     when 2
@@ -81,7 +84,7 @@ class App
       name = gets.chomp.to_s
       print 'Specialization: '
       specialization = gets.chomp.to_s
-      @people.push(Teacher.new(age, specialization, name: name))
+      @people.push(Teacher.new(age, specialization, name))
       puts 'Person created successfully'
     else
       puts 'Invalid input, please try again'
@@ -114,7 +117,7 @@ class App
 
   def list_rentals
     print 'ID of person: '
-    id = gets.chomp.to_i
+    id = gets.chomp
     puts 'Rentals:'
     @people.each do |person|
       next unless person.id == id
@@ -125,8 +128,6 @@ class App
     end
   end
 
-  private
-
   def save
     File.write('people.json', JSON.generate(@people))
     File.write('books.json', JSON.generate(@books))
@@ -134,32 +135,34 @@ class App
   end
 
   def load_people
-    return [] unless File.file?('people.json')
+    return unless File.file?('people.json')
 
     JSON.parse(File.read('people.json')).map do |person|
       if person['json_class'] == 'Student'
-        Student.new(person['age'], person['name'], person['parent_permission'])
+        @people.push(Student.new(person['age'], person['name'], person['id'],
+                                 parent_permission: person['parent_permission']))
       elsif person['json_class'] == 'Teacher'
-        Teacher.new(person['age'], person['specialization'], name: person['name'])
+        @people.push(Teacher.new(person['age'], person['specialization'], person['name'], person['id'],
+                                 parent_permission: person['parent_permission']))
       end
     end
   end
 
   def load_books
-    return [] unless File.file?('books.json')
+    return unless File.file?('books.json')
 
     JSON.parse(File.read('books.json')).map do |book|
-      Book.new(book['title'], book['author'])
+      @books.push(Book.new(book['title'], book['author']))
     end
   end
 
   def load_rentals
-    return [] unless File.file?('rentals.json')
+    return unless File.file?('rentals.json')
 
     JSON.parse(File.read('rentals.json')).map do |rental|
-      person = @people.select { |psn| psn.name == rental['person']['name'] }
-      book = @books.select { |bk| bk.title == rental['book']['title'] }
-      Rental.new(rental['date'], person[0], book[0])
+      rent_person = @people.find { |person| person.name == rental['person']['name'] }
+      rent_book = @books.find { |book| book.title == rental['book']['title'] }
+      @rentals.push(Rental.new(rental['date'], rent_person, rent_book))
     end
   end
 end
