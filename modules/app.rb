@@ -13,7 +13,6 @@ ACTIONS = {
   7 => :break
 }.freeze
 
-
 class App
   include Menu
 
