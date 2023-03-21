@@ -42,6 +42,7 @@ class App
       end
     end
   end
+
   def list_books
     if @books.empty?
       puts 'No books found'
@@ -49,6 +50,7 @@ class App
       @books.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
     end
   end
+
   def list_people
     if @people.empty?
       puts 'No people found'
@@ -56,6 +58,7 @@ class App
       @people.each { |person| puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
     end
   end
+
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
     option = gets.chomp.to_i
@@ -84,6 +87,7 @@ class App
       puts 'Invalid input, please try again'
     end
   end
+
   def create_book
     print 'Title: '
     title = gets.chomp.to_s
@@ -107,12 +111,14 @@ class App
     @rentals.push(Rental.new(date, @people[person_index], @books[book_index]))
     puts 'Rental created successfully'
   end
+
   def list_rentals
     print 'ID of person: '
     id = gets.chomp.to_i
     puts 'Rentals:'
     @people.each do |person|
       next unless person.id == id
+
       person.rentals.each do |rental|
         puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}"
       end
