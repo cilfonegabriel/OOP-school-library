@@ -3,7 +3,6 @@ require 'date'
 require_relative './rental'
 require 'json'
 
-
 class Person < Nameable
   attr_accessor :name, :age
   attr_reader :id, :rentals, :parent_permission
