@@ -1,17 +1,28 @@
 require_relative './nameable'
+require 'date'
 require_relative './rental'
 
 class Person < Nameable
   attr_accessor :name, :age
-  attr_reader :id, :rentals
+  attr_reader :id, :rentals, :parent_permission
 
-  def initialize(age, name, parent_permission)
+  def initialize(age, id = SecureRandom.uuid, name = 'Unknown', parent_permission: true)
     super()
-    @id = Random.rand(1..1000)
+    @id = id
     @name = name
     @age = age
     @parent_permission = parent_permission
     @rentals = []
+  end
+
+  def to_json(*args)
+    {
+      JSON.create_id => self.class.name,
+      'id' => id,
+      'name' => name,
+      'age' => age,
+      'parent_permission' => parent_permission
+    }.to_json(*args)
   end
 
   private
