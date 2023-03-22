@@ -78,11 +78,6 @@ Install dependencies:
 - GitHub: [Gabriel Cilfone](https://github.com/cilfonegabriel)
 - LinkedIn: [Gabriel Cilfone](www.linkedin.com/in/gabriel-cilfone/)
 
-👤 **Ricardo Martínez**
-
-- GitHub: [@rmrmrmr](https://github.com/rmrmrmr)
-- Twitter: [@ricmtza](https://twitter.com/ricmtza)
-- LinkedIn: [LinkedIn](www.linkedin.com/in/ricardo-mag)
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>

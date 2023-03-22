@@ -3,7 +3,7 @@ require_relative '../modules/person'
 RSpec.describe Person do
   let(:person) { Person.new(18, '1234-5678', 'John Smith', parent_permission: true) }
   let(:book) { double('Book') }
-  
+
   describe '#can_use_services?' do
     context 'when the person is of age' do
       it 'returns true' do
@@ -11,7 +11,7 @@ RSpec.describe Person do
       end
     end
   end
-  
+
   describe '#to_json' do
     it 'returns a JSON representation of the person' do
       expect(person.to_json).to eq({
