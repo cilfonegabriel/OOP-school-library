@@ -25,9 +25,9 @@ describe Person do
 
   describe '#add_rental' do
     it 'adds a rental to the book\'s rentals array' do
-      expect {
+      expect do
         person.add_rental(book)
-      }.to change(book.rentals, :size).by(1)
+      end.to change(book.rentals, :size).by(1)
     end
 
     it 'creates a new Rental object with the person and book' do
